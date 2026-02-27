@@ -1,0 +1,47 @@
+--------------- Ox at 18:33:42 on 07-Jun-2025 ---------------
+
+Ox 9.10 (Windows_64/Parallel) (C) J.A. Doornik, 1994-2023 (oxlang.dev)
+******************************************
+------------------------------------------
+	Configuracao de variaveis
+------------------------------------------
+
+REGIOES
+	Quantidade de lags: 8
+	Quantidade de Regioes: 110
+	Quantidade de Variaveis Dependente: 3
+Variaveis Dependentes:
+[0] = ETANOL_HIDRATADO
+[1] = OLEO_DIESEL
+[2] = GASOLINA_COMUM
+
+DATABASE
+	Macrovariaveis: ../export/database for ox/db_oil_withSesonal.in7
+	Regioes: ../export/database for ox/db_oil_withSesonal.in7
+	Database Star: ../export/database for ox/db_oil_withSesonal_Star.in7
+
+DIRETORIOS
+	W Matrix Dir: ./mat_files/W_mat/
+	Cointeration Matrix Dir: ./mat_files/Cointegration/
+	Raw Matrix Dir: ./mat_files/RawMatrix/
+	A Matrix Dir: ./mat_files/A_Matrix/
+	G Matrix Dir: ./mat_files/G_Matrix/
+	Result Matrix Dir: ./mat_files/Result_Matrix/
+
+WEIGHT MATRIX
+	Matrix de Pesos: ./mat_files/W_mat/All/PIB_PC_1.mat
+
+Configuracoes
+	is_IIS_ON: 1
+	IIS_pvalue: 0.01
+	is_DUMMY_ON: 1
+	type_DUMMY: U
+******************************************
+Script responsavel pelo 'stacking' das variaveis 
+GVAR Passo 3 Inicializado
+Realizando processo de stacking das matrizes U (Cosntantes e Seasons)
+Realizando processo de stacking das matrizes Alpha
+OMP: Warning #227: Cannot determine machine load balance - Using KMP_DYNAMIC_MODE=thread limit
+Realizando processo de stacking das matrizes IIS
+Realizando processo de stacking da matrizes D
+Processo finalizado.
