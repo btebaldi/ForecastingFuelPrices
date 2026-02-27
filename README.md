@@ -21,6 +21,54 @@ To be added
 * 📂 `Videos/`: Vídeos explicativos com visualizações das previsões regionais de emprego sob diferentes cenários macroeconômicos.
 -->
 
+
+#### Scripts de construção da base de dados
+file: 01_Construcao do banco de dados.R
+Used to construct the database from the downloaded files. (the downloaded files are not provided due to size constrains.)
+
+02_Juncao do banco_Agrupamento.R
+Used to grup regions. The grouped regions are based on the configuration file "Cadastro de municipios.xlsx"
+
+03_Analise exploratoria.R
+Script used in Exploratori analisys. Not needed for the reproduction.
+
+04_Analise de completude dos dados
+Script used in Exploratori analisys. Not needed for the reproduction.
+
+05_Cria bando de dados com buraco.R
+Fill missing dates. The final database (db_Ox_com_buraco.rds) still has missing values, however for almost all dates the database is complete. Is is worth mentioning that the 2020 pandemic caused period of 9 weeks with out values. These periods were not inserted. 
+ 
+06_Completa buracos com KF.R
+Completa eventuais buracos na serie com um Filtro de Kalman. ao final a base  "db_Ox_sem_buraco.csv" é disponibilizada sem nenhum buraco.
+
+07_Constroi matriz de pesos.R
+Scrip que constroi a matrix de pesos utilizada no Gvar. Faz a leitura do database Ligacoes_entre_Cidades.xlsx para construir uma matriz de conexao que possa ser lida pelo OxMetrics.
+
+08_Constroi serie de oil.R
+Inclui serie de petroleo brent na base de dados. O preço é colocado como a média de preços na semana. O resultado é disponibilizado no arquivo "db_Oil.rds" (uma versao em csv tambme é disponibilizada)
+
+09_Constroi serie de oil com dummies.R
+Inclui serie de dummies semanais na base de dados. Utiliza a base de dados "db_Oil.rds" como entrada e gera duas base de dados (i) db_oil_forForecast.rds Com todo periodo de dados; (ii) "db_oil_withDummies.rds" que base de dados que vai até o ano de 2019 (exclusive)
+
+10_ Constroi Serie com cambio.R
+Inclui serie de cambio na base de dados. Utiliza a base de dados "db_oil_forForecast.rds" como entrada e gera duas base de dados (i) db_oil_forForecast2.rds Com todo periodo de dados; (ii) "db_oil_withDummies2.rds" que base de dados que vai até o ano de 2019 (exclusive)
+
+#### Scripts de Analise Exploratoria de Dados
+20 - Gera graficos de regioes.R
+
+#### Scripts de Analise dos Resultados
+21 - Interpreta matrix do Ox das regioes.R
+Script para interpretação da Matriz feita no Ox para uma matriz do R.
+
+22 - Gera forecasts das regioes.R
+Script que gera a previsao dos dados baseado nos resultados encontrados.
+
+23 - VECM model by region.R
+Script que gera a modelo VECM para cada uma das regioes.
+
+24 - Impulse response.R
+Script que gera uma Funçao de Impulso (IRF) no modelo GVAR total. 
+
 ### 🔁 Reprodutibilidade
 
 To be added

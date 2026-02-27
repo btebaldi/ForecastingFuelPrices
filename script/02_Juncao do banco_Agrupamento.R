@@ -1,0 +1,74 @@
+
+# Setup -------------------------------------------------------------------
+
+rm(list=ls())
+
+library(dplyr)
+library(readxl)
+library(tidyr)
+
+# Configuracao de labels and levels
+level_n_labels_path <- file.path("./database/Config_data/levels_and_labels.xlsx")
+
+# Carrega banco de dados  -------------------------------------------------
+
+# Carrega banco de dados de historico de gasolina
+Gas <- readRDS("./database/Gasolina.rds")
+
+# Carrega o banco de dados dos municipios
+Cadastro_de_municipios <- read_excel("./database/Config_data/Cadastro de municipios.xlsx", 
+                                     sheet = "Mapeamento")
+
+# Carrega levels and labels
+LL_Estados <- read_excel(level_n_labels_path, sheet = "Estados")
+LL_Regiao <- read_excel(level_n_labels_path, sheet = "Regiao")
+
+Cadastro_de_municipios$REGIAO <- factor(Cadastro_de_municipios$REGIAO, labels = LL_Regiao$labels, levels = LL_Regiao$levels)
+Cadastro_de_municipios$ESTADO <- factor(Cadastro_de_municipios$ESTADO, labels = LL_Estados$labels, levels = LL_Estados$levels)
+
+
+Gas <- Gas %>% left_join(Cadastro_de_municipios, by = c("REGIAO", "ESTADO", "MUNICIPIO"))
+
+
+# Agrupamento -------------------------------------------------------------
+
+summary(Gas)
+
+Gas %>% 
+  select(PRECO_MEDIO_REVENDA, PRECO_MEDIO_DISTRIBUICAO) %>% 
+  mutate(X = PRECO_MEDIO_REVENDA - PRECO_MEDIO_DISTRIBUICAO,
+         Y = X / PRECO_MEDIO_DISTRIBUICAO) %>% 
+  filter(X < 0) %>% 
+  summary()
+  
+tbl.Agrupamento <- Gas %>% 
+  select(DATA_INICIAL,
+         DATA_FINAL,
+         REGIAO,
+         Agrupamento,
+         OxCode,
+         PRODUTO,
+         NUM_PESQUISADOS,
+         PRECO_MEDIO_REVENDA,
+         DESVIO_PADRAO_REVENDA,
+         PRECO_MINIMO_REVENDA,
+         PRECO_MAXIMO_REVENDA, 
+         PRECO_MEDIO_DISTRIBUICAO,
+         DESVIO_PADRAO_DISTRIBUICAO,   
+         PRECO_MINIMO_DISTRIBUICAO,
+         PRECO_MAXIMO_DISTRIBUICAO
+         ) %>% 
+  group_by(DATA_INICIAL, DATA_FINAL, REGIAO, Agrupamento, OxCode,  PRODUTO) %>% 
+  summarise( NUM_PESQUISADOS = sum(NUM_PESQUISADOS, na.rm = TRUE),
+             PRECO_MEDIO_REVENDA = mean(PRECO_MEDIO_REVENDA, na.rm = TRUE),
+             DESVIO_PADRAO_REVENDA = (sum(DESVIO_PADRAO_REVENDA^2, na.rm = TRUE))^0.5,
+             PRECO_MINIMO_REVENDA = min(PRECO_MINIMO_REVENDA, na.rm = TRUE),
+             PRECO_MAXIMO_REVENDA = max(PRECO_MAXIMO_REVENDA, na.rm = TRUE),
+             PRECO_MEDIO_DISTRIBUICAO = mean(PRECO_MEDIO_DISTRIBUICAO, na.rm = TRUE),
+             # DESVIO_PADRAO_DISTRIBUICAO = (sum(DESVIO_PADRAO_DISTRIBUICAO^2, na.rm = TRUE))^0.5,
+             # PRECO_MINIMO_DISTRIBUICAO = min(PRECO_MINIMO_DISTRIBUICAO, na.rm = TRUE),
+             # PRECO_MAXIMO_DISTRIBUICAO = max(PRECO_MAXIMO_DISTRIBUICAO, na.rm = TRUE),
+             .groups = "drop")
+
+
+write_rds(x = tbl.Agrupamento, file = "./database/Gasolina_Agrupamento.rds")

@@ -1,12 +1,14 @@
 # History files
 .Rhistory
 .Rapp.history
+_*
 
 # User directories
 /Graficos/
 
 # Session Data files
 .RData
+.RDataTmp
 
 # User-specific files
 .Ruserdata

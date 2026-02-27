@@ -1,0 +1,37 @@
+
+    Directory: C:\Users\bteba\Documents\GitHub\ForecastingFuelPrices\script
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          2025-08-14    11:09                no more
+d----          2025-08-14    11:09                Ox log interpreters
+-a---          2025-08-14    13:59           4612 01_Construcao do banco de dados_v1.R
+-a---          2025-08-14    15:43           4895 01_Construcao do banco de dados_v2.R
+-a---          2025-08-14    15:42           4476 01_Construcao do banco de dados.R
+-a---          2025-08-14    15:47           2151 02_Juncao do banco_Agrupamento.R
+-a---          2024-10-01    07:32           3970 03_Analise exploratoria.R
+-a---          2025-08-14    16:18           4298 04_Analise de completude dos dados.R
+-a---          2025-08-14    16:49           2897 05_Cria bando de dados com buraco.R
+-a---          2025-08-14    17:15           1774 06_Completa buracos com KF.R
+-a---          2024-10-01    07:32           6931 07_Constroi matriz de pesos.R
+-a---          2024-10-01    07:32           1638 08_Constroi serie de oil.R
+-a---          2024-10-01    07:32           1236 09_Constroi serie de oil com dummies.R
+-a---          2024-10-01    07:32           1454 10_ Constroi Serie com cambio.R
+-a---          2024-10-01    07:32           3582 20 - Gera graficos de regioes.R
+-a---          2025-06-09    15:58           3655 21 - Interpreta matrix do Ox das regioes.R
+-a---          2024-10-01    07:32           9695 22 - Gera forecasts das regioes.R
+-a---          2024-10-01    07:32          10281 23 - VECM model by region.R
+-a---          2025-04-25    17:07           9230 24 - Impulse response.R
+-a---          2025-07-22    09:26          15413 24-1 - Impulse response.R
+-a---          2024-10-01    07:32           5196 25 - Analise dos Erros.R
+-a---          2024-10-01    07:32          10704 32 - Gera forecasts das regioes (Modelo X).R
+-a---          2024-10-01    07:32          12344 35 - Analise dos Erros todos modelos.R
+-a---          2024-10-01    07:32          14021 42 - Gera forecasts das regioes (with cambio).R
+-a---          2024-10-01    07:32          14337 43 - VECM model by region with cambio.R
+-a---          2025-06-03    11:22           7837 50 - Export IRF to Excel.R
+-a---          2024-10-01    07:32           3672 51 - Export erros to Marcal.R
+-a---          2025-05-28    15:29            600 55 - Analise MCS do OX.R
+-a---          2024-09-12    20:50           6372 99 - Kalman.r
+-a---          2025-08-15    13:01              0 here.txt
+-a---          2025-05-30    15:12         800654 X para IRF.xlsx
+
