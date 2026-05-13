@@ -11,7 +11,7 @@ library(ggplot2)
 
 # Results Load ------------------------------------------------------------
 
-mOutputDir <- "C:/Users/bteba/OneDrive/TesteRestricaoRank"
+mOutputDir <- "~/Github/ForecastingFuelPrices/TesteRestricaoRank/"
 mFile <- file.path(mOutputDir, "results.xlsx")
 
 results <- read_excel(mFile)
@@ -28,7 +28,9 @@ m_lvl = c("TesteRestricaoRank01",
           "TesteRestricaoRank03a",
           "TesteRestricaoRank03b",
           "TesteRestricaoRank03c",
-          "TesteRestricaoRank03d")
+          "TesteRestricaoRank03d",
+          "TesteRestricaoRank03e",
+          "TesteRestricaoRank03f")
 m_lbl = c("Rank01",
           "Rank02a",
           "Rank02b",
@@ -38,13 +40,17 @@ m_lbl = c("Rank01",
           "Rank03a",
           "Rank03b",
           "Rank03c",
-          "Rank03d")
+          "Rank03d",
+          "Rank03e",
+          "Rank03f")
 
 results <- results %>% 
   mutate(Teste = factor(x = File, levels = m_lvl, labels = m_lbl, ordered = TRUE),
          RR = factor(x = Rank_by_EM, levels = 0:3, labels = paste("R",0:3, sep = "_")))
 
-results <- results %>% filter(Teste != "Rank02e")
+unique(results$Teste)
+
+# results <- results %>% filter(Teste != "Rank02e")
 
 
 results %>% 
